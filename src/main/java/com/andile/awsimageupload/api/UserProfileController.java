@@ -2,6 +2,7 @@ package com.andile.awsimageupload.api;
 
 import com.andile.awsimageupload.api.service.UserProfileService;
 import com.andile.awsimageupload.model.UserProfile;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,20 +13,21 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/user-profile")
+@RequiredArgsConstructor
 @CrossOrigin("*")
 public class UserProfileController {
-    private final UserProfileService userProfileService;
 
-    @Autowired
-    public UserProfileController(UserProfileService userProfileService) {
-        this.userProfileService = userProfileService;
-    }
+    private final UserProfileService userProfileService;
 
     @GetMapping
     public List<UserProfile>  getUserProfiles(){
         return userProfileService.getUserProfile();
     }
 
+    /**
+     * @param userProfileId
+     * @param file
+     */
     @PostMapping(
             path = "{userProfileId}/image/download",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,

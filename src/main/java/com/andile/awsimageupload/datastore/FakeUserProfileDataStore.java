@@ -17,6 +17,10 @@ public class FakeUserProfileDataStore {
         USER_PROFILES.add(new UserProfile(UUID.randomUUID(),"siphodecember",null));
     }
 
+    /**
+     * method is used to
+     * @return List of UserProfile objects
+     */
     public  List<UserProfile> getUserProfiles() {
         return USER_PROFILES;
     }
